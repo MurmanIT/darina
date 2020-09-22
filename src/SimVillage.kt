@@ -1,0 +1,31 @@
+fun main(args: Array<String>) {
+    val numLetters = "Mississippi".count({ letter ->
+        letter == 's'
+    })
+    val greetingFunction = { playerName: String, numBuildings: Int ->
+        val currentYear = 2018
+        println("Adding $numBuildings houses")
+        "Welcome to SimVillage, $playerName! (copyright $currentYear)"
+    }
+
+    runSimulation("Mark", ::printConstructionCost) { playerName, numBuildings ->
+        val currentYear = 2008;
+        println("Adding $numBuildings houses")
+        "Welcome to SimVillage, $playerName! (copyright $currentYear)"
+    };
+}
+
+inline  fun runSimulation(
+        playerName: String,
+        costPrinter: (Int) -> Unit,
+        greetingFunction: (String, Int) -> String) {
+    val numBuildings = (1..3).shuffled().last();
+    costPrinter(numBuildings);
+    println(greetingFunction(playerName, numBuildings))
+}
+
+private fun printConstructionCost(numBuildings: Int) {
+    val cost = 500
+    println("construction cost: ${cost * numBuildings}");
+}
+
