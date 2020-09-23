@@ -12,8 +12,7 @@ private fun karma(healthPoints: Int): Int {
     return  (Math.pow(Math.random(), (110 - healthPoints) / 100.0 )*20).toInt();
 }
 
-private fun aura(healthPoints: Int): String {
-    val karma = karma(healthPoints);
+private fun aura(healthPoints: Int, karma: Int): String {
     val aura: String = when(karma) {
         in 16..20 -> "GREEN"
         in 11..15 -> "PURPLE"
@@ -43,5 +42,5 @@ private fun madrigal(playerName: String, healthPoints: Int = 100, isBld: Boolean
 fun main(args: Array<String>) {
     val playerName: String = "Estragon";
     val healthPoints = 89;
-    println("(HP: $healthPoints)(Aura: ${aura(healthPoints)})->${madrigal("Madrigal", healthPoints, true)}")
+    println("(HP: $healthPoints)(Aura: ${aura(healthPoints, karma(healthPoints))})->${madrigal("Madrigal", healthPoints, true)}")
 }
